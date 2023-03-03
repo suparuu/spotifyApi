@@ -1,24 +1,32 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import axios from 'axios'
-import { translateText } from './api/hello'
-import text from './comp/text'
-import { useEffect, useState } from 'react'
-
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import Link from 'next/link';
+bootstrap
 
 
 export default function Home() {
+const [searchInput,setSearchInput] = useState('');
+  const accessToken = "BQBBzatcwkDRKgoIMZ3SBTS-YRx-wDBDt-qHTEY6vHUNDmzpCrK1-dliRX";
+const client_id = '017de660e7444fa7a690fd422b198f9f'; // Your client id
 
-    const [inputText, setInputText] = useState('');
-    const [translatedText, setTranslatedText] = useState('');
-  
-    async function handleTranslate() {
-      const result = await translateText(inputText);
-      setTranslatedText(result);
-    }
-    console.log(inputText,'인풋창')
+fetch(`https://api.spotify.com/v1/albums/017de660e7444fa7a690fd422b198f9f`, {
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+  },
+})
+  .then((response) => response.json())
+  .then((Response) => thisistest(Response))
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error("Error fetching playlists:", error);
+  });
+  function thisistest(aa){
+    console.log(aa)
 
-     
+  }
+  console.log(searchInput ,'인풋창 변경 확인')
 
   return (
     <>
@@ -28,11 +36,52 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-      <input value={inputText} onChange={(e) => setInputText(e.target.value)} />
-      <button onClick={handleTranslate}>Translate</button>
-      {translatedText && <p>{translatedText}</p>}
-    </div>
+      {/* <div>
+        <div id="login">
+          <h1>First, log in to spotify</h1>
+          <Link href="/comp/login">Log in</Link>
+        </div>
+        <div id="loggedin"></div>
+      </div>
+      {
+        useEffect(()=>{
+          <script id="loggedin-template" type="text/x-handlebars-template">
+          <h1>Logged in as </h1>
+          <img id="avatar" width="200" src="" />
+          <dl>
+            <dt>Display name</dt>
+            <dd></dd>
+            <dt>Username</dt>
+            <dd></dd>
+            <dt>Email</dt>
+            <dd></dd>
+            <dt>Spotify URI</dt>
+            <dd>
+              <Link href=""></Link>
+            </dd>
+            <dt>Link</dt>
+            <dd>
+              <Link href=""></Link>
+            </dd>
+            <dt>Profile Image</dt>
+            <dd></dd>
+          </dl>
+          <p>
+            <Link href="/">Log in again</Link>
+          </p>
+        </script>
+        },[])
+      } */}
+
+
+      <input placeholder='search for artist' type="input" onKeyPress={e=>{
+        if(e.key == "Enter"){
+          console.log('엔터키' + searchInput)
+        }
+      }}
+      onChange={e=> setSearchInput(e.target.value)}
+      ></input>
+      <button onClick={e=>{console.log('버튼클릭' + searchInput)}}>검색</button>
     </>
-  )
+  );
 }

@@ -1,0 +1,26 @@
+Spotify API : 노래 앨범 및 아티스트 검색 , 인기도, 출시일 ,장르, 키 , 댄스 , 오디오기능
+
+
+
+음악플레이어:
+
+재생 목록, 노래 및 앨범 세부 정보
+
+Next.js를 사용하여 음악 플레이어를 구축
+
+CRUD 작업을 사용하여 사용자가 재생 목록 또는 노래를 생성, 읽기, 업데이트 및 삭제
+
+인기순 : 좋아요 누적 
+
+api 호출해서 구조 파악
+
+
+bootstrap or pinterest 이용해서 마크업 꾸미기 
+
+nextjs bootstrap 설치 방법 찾기 및 
+
+
+https://www.youtube.com/watch?v=1PWDxgqLmDA 참고해서 만들기 
+
+
+
