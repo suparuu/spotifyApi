@@ -1,32 +1,60 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Link from 'next/link';
-bootstrap
+import { Button, Card, Container, FormControl, InputGroup, Row } from "react-bootstrap";
+
 
 
 export default function Home() {
-const [searchInput,setSearchInput] = useState('');
-  const accessToken = "BQBBzatcwkDRKgoIMZ3SBTS-YRx-wDBDt-qHTEY6vHUNDmzpCrK1-dliRX";
-const client_id = '017de660e7444fa7a690fd422b198f9f'; // Your client id
+const [searchInput,setSearchInput] = useState('');//검색 스테이트
+const [accessToken, setAccessToken] = useState('');// 토큰값 계속 불러오는 스테이트
+const [albums, setAlbums] = useState('');
+const CLIENT_ID = '017de660e7444fa7a690fd422b198f9f'; //내 아이디
+const CLIENT_SECRET = 'be4733d60b604cd48b1ae63d424021d4' //내 비밀번호
+const test = 'BQCLTrJ27z8pZQ32VjQaMD7_nyFo6wGLCu3i8VWqukjM2T56Tc7NFYf25BE8V'//내 토큰
 
-fetch(`https://api.spotify.com/v1/albums/017de660e7444fa7a690fd422b198f9f`, {
-  headers: {
-    Authorization: `Bearer ${accessToken}`,
-  },
-})
-  .then((response) => response.json())
-  .then((Response) => thisistest(Response))
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error("Error fetching playlists:", error);
-  });
-  function thisistest(aa){
-    console.log(aa)
+  useEffect(()=>{
+    let authParameters = {
+        method : 'POST',
+        headers: {
+            'Content-Type' : 'application/x-www-form-urlencoded'
+        },
+        body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
+    }
+    fetch('https://accounts.spotify.com/api/token', authParameters)
+    .then(result => result.json())
+    .then(data => setAccessToken(data.access_token))
+  },[])//api토큰값 
+console.log(accessToken,'state')
+  //검색
+  async function search() {
+    console.log("뭐검색?" + searchInput); // 아이유
 
+    // 아티스트 ID 
+    let searchParameters = {
+        method: 'GET',
+        headers: {
+            "Content-Type" : 'application/json',
+            "Authorization" : 'Bearer ' + accessToken
+        }
+    }
+    let artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', searchParameters)
+    .then(response => response.json())
+    .then(data => {return data.artists.items[0].id })
+
+    console.log("아티스트 ID" + artistID)
+
+    let albums = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums' + '?include_groups=album&market=KR&limit=50' ,searchParameters)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        setAlbums(data.items);
+    })
+    //해당 아티스트의 모든 앨범 가져오기
+    //가져온 앨범들 유저한테 뿌리기
   }
-  console.log(searchInput ,'인풋창 변경 확인')
+  console.log(albums)
 
   return (
     <>
@@ -36,52 +64,53 @@ fetch(`https://api.spotify.com/v1/albums/017de660e7444fa7a690fd422b198f9f`, {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <div>
-        <div id="login">
-          <h1>First, log in to spotify</h1>
-          <Link href="/comp/login">Log in</Link>
-        </div>
-        <div id="loggedin"></div>
-      </div>
-      {
-        useEffect(()=>{
-          <script id="loggedin-template" type="text/x-handlebars-template">
-          <h1>Logged in as </h1>
-          <img id="avatar" width="200" src="" />
-          <dl>
-            <dt>Display name</dt>
-            <dd></dd>
-            <dt>Username</dt>
-            <dd></dd>
-            <dt>Email</dt>
-            <dd></dd>
-            <dt>Spotify URI</dt>
-            <dd>
-              <Link href=""></Link>
-            </dd>
-            <dt>Link</dt>
-            <dd>
-              <Link href=""></Link>
-            </dd>
-            <dt>Profile Image</dt>
-            <dd></dd>
-          </dl>
-          <p>
-            <Link href="/">Log in again</Link>
-          </p>
-        </script>
-        },[])
-      } */}
+    
+
+      <Container>
+        <InputGroup className="mb-3" size="lg">
+            <FormControl
+                placeholder="아티스트 검색"
+                type="input"
+                onKeyPress={e=>{
+                    if(e.key == "Enter"){
+                        search();
+                    }
+                }}
+                onChange={e => setSearchInput(e.target.value)}></FormControl>
+      <Button onClick={search}>
+        검색
+      </Button>
+        </InputGroup>
+      </Container>
+      <Container>
+        <Row className="mx-2 row row-cols-4">
+            {albums && albums.map((album,i)=>{
+                console.log(album.images)
+                return(
+                    <Card>
+                    <Card.Img src={album.images[0].url}/>
+                    <Card.Body>
+                        <Card.Title>{album.name}</Card.Title>
+                    </Card.Body>
+                </Card>
+                )
+            })}
+       
+        </Row>
+      </Container>
 
 
-      <input placeholder='search for artist' type="input" onKeyPress={e=>{
+
+
+      {/* <input placeholder='search for artist' type="input" onKeyPress={e=>{
         if(e.key == "Enter"){
           console.log('엔터키' + searchInput)
         }
       }}
       onChange={e=> setSearchInput(e.target.value)}
       ></input>
-      <button onClick={e=>{console.log('버튼클릭' + searchInput)}}>검색</button>
+      <button onClick={e=>{console.log('버튼클릭' + searchInput)}}>검색</button> */}
+
     </>
   );
 }
