@@ -22,5 +22,13 @@ nextjs bootstrap 설치 방법 찾기 및
 
 https://www.youtube.com/watch?v=1PWDxgqLmDA 참고해서 만들기 
 
+검색 기능 안에 넣어야 할 object들 
+
+통합검색 에서 
+아티스트명 , 
+곡명,
+앨범명
+가수이름, 노래이름
+
 
 
