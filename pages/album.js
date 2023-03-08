@@ -19,7 +19,7 @@ const Album = () => {
         console.log(data);
         console.log(data.tracks.items);
         setTracks(data.tracks.items);
-      });
+      });실험합니다 ㅠㅠ 
   }, []); */
 
   //
