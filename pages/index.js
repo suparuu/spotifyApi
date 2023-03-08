@@ -96,7 +96,8 @@ export default function Home() {
       });
   } //검색 함수
 
-  function test(album) {
+  function routeAlbum(album) {
+    console.log(album)
     router.push({
       pathname: "./album",
       query: {albumHref : album.href,
@@ -122,12 +123,15 @@ export default function Home() {
         </InputGroup>
       </Container>
       <Container>
+        <h2></h2>
+      </Container>
+      <Container>
         <h2>앨범</h2>
         <Row className="mx-2 row row-cols-4">
           {albums &&
             albums.map((album, i) => {
               return (
-                 <Card onClick={() => test(album)}> 
+                 <Card onClick={() => routeAlbum(album)}> 
                   <Card.Img src={album.images[0].url} />
                   <Card.Body>
                     <Card.Title>{album.name}</Card.Title>
