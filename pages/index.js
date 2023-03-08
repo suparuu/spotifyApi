@@ -51,7 +51,6 @@ export default function Home() {
   }, []); //api토큰값
 
   async function search() {
-    console.log("뭐검색?" + searchInput); // 아이유
 
     // 아티스트 ID
     let searchParameters = {
@@ -70,7 +69,6 @@ export default function Home() {
         return data.artists.items[0].id;
       });
 
-    console.log("아티스트 ID:", artistID);
 
     let albums = await fetch(
       "https://api.spotify.com/v1/artists/" +
@@ -84,12 +82,7 @@ export default function Home() {
         setAlbums(data.items);
       }); //해당 아티스트의 모든 앨범 가져오기
 
-    /* let albums = await fetch('https://api.spotify.com/v1/albums/'  + artistID  ,searchParameters)
-    .then(response => response.json())
-    .then(data => {
-        setAlbums(data.items);
-        console.log(data,'61번 실험')
-    })//해당 아티스트의 모든 앨범 가져오기 */
+   
 
     let artist = await fetch(
       "https://api.spotify.com/v1/artists/" + artistID,
@@ -102,14 +95,12 @@ export default function Home() {
         setArtistHref(data.href);
       });
   } //검색 함수
-  console.log(albums, "앨범");
-  console.log(artistHref, "아티스트 상세");
 
   function test(album) {
-    console.log(album.id);
     router.push({
       pathname: "./album",
-      query: album,
+      query: {albumHref : album.href,
+    albumImg : album.images[2].url},
     });
   }
 
@@ -118,7 +109,7 @@ export default function Home() {
       <Container>
         <InputGroup className="mb-3" size="lg">
           <FormControl
-            placeholder="아티스트 검색"
+            placeholder="검색"
             type="input"
             onKeyPress={(e) => {
               if (e.key == "Enter") {
@@ -136,13 +127,13 @@ export default function Home() {
           {albums &&
             albums.map((album, i) => {
               return (
-                <Card onClick={() => test(album)}>
+                 <Card onClick={() => test(album)}> 
                   <Card.Img src={album.images[0].url} />
                   <Card.Body>
                     <Card.Title>{album.name}</Card.Title>
                   </Card.Body>
                 </Card>
-              );
+                  );
             })}
         </Row>
       </Container>
@@ -160,18 +151,6 @@ export default function Home() {
       </Container>
       <Script src="https://sdk.scdn.co/spotify-player.js" />
 
-      {/*  <SpotifyPlayer 
-            token={accessToken}
-            uris={''}></SpotifyPlayer> */}
-
-      {/* <input placeholder='search for artist' type="input" onKeyPress={e=>{
-        if(e.key == "Enter"){
-          console.log('엔터키' + searchInput)
-        }
-      }}
-      onChange={e=> setSearchInput(e.target.value)}
-      ></input>
-      <button onClick={e=>{console.log('버튼클릭' + searchInput)}}>검색</button> */}
     </>
   );
 }
