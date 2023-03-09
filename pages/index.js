@@ -16,6 +16,8 @@ import album from "./album";
 import { useRouter } from "next/router";
 import Image from "next/image"
 import main from "@/styles/main.module.css"
+import search from "./search";
+
 
 /* import SpotifyPlayer from 'react-spotify-web-playback';
 import dynamic from "next/dynamic"; */
@@ -27,7 +29,7 @@ export default function Home() {
   const [artist, setArtist] = useState(""); //아티스트 api
   const [artistHref, setArtistHref] = useState("");
 const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
-  const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호  
+const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호  
   const mytoken =
     "BQCLTrJ27z8pZQ32VjQaMD7_nyFo6wGLCu3i8VWqukjM2T56Tc7NFYf25BE8V"; //내 토큰
   const router = useRouter();
@@ -52,7 +54,7 @@ const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
       });
   }, []); //api토큰값
 
-  async function search() {
+  async function searchWhat() {
 
     // 아티스트 ID
     let searchParameters = {
@@ -151,12 +153,12 @@ const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
             type="input"
             onKeyPress={(e) => {
               if (e.key == "Enter") {
-                search();
+                searchWhat();
               }
             }}
             onChange={(e) => setSearchInput(e.target.value)}
           ></FormControl>
-          <Button onClick={search}>검색</Button>
+          <Button onClick={searchWhat}>검색</Button>
         </InputGroup>
       </Container>
     )
@@ -175,51 +177,25 @@ const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
         height={48}
         className={''}></Image>
     </header>
-    
-    <Container>
+    <search></search>
+    <Container className={main.mid}>
+        <h1 className={main.h1name}>SuparuuMusic</h1>
         <InputGroup className="mb-3" size="lg">
           <FormControl
             placeholder="검색"
             type="input"
             onKeyPress={(e) => {
               if (e.key == "Enter") {
-                search();
+                searchWhat();
               }
             }}
             onChange={(e) => setSearchInput(e.target.value)}
           ></FormControl>
-          <Button onClick={search}>검색</Button>
+          <Button onClick={searchWhat}>검색</Button>
         </InputGroup>
       </Container>
 
-      <Container /* className={main.album} */>
-        <h2>앨범</h2>
-        <Row className="mx-2 row row-cols-4">
-          {albums &&
-            albums.map((album, i) => {
-              return (
-                 <Card onClick={() => routeAlbum(album)}> 
-                  <Card.Img src={album.images[0].url} />
-                  <Card.Body>
-                    <Card.Title>{album.name}</Card.Title>
-                  </Card.Body>
-                </Card>
-                  );
-            })}
-        </Row>
-      </Container>
-
-      <Container /* className={main.artist} */>
-        <h2>아티스트</h2>
-        <Row className="mx-2 row row-cols-4">
-          <Card>
-            <Card.Img src={artist && artist.images[0].url} />
-            <Card.Body>
-              <Card.Title>{artist && artist.name}</Card.Title>
-            </Card.Body>
-          </Card>
-        </Row>
-      </Container>
+      
       <Script src="https://sdk.scdn.co/spotify-player.js" />
 
     </>
