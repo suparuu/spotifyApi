@@ -14,6 +14,8 @@ import { resolve } from "styled-jsx/css";
 import Script from "next/script";
 import album from "./album";
 import { useRouter } from "next/router";
+import Image from "next/image"
+import main from "@/styles/main.module.css"
 
 /* import SpotifyPlayer from 'react-spotify-web-playback';
 import dynamic from "next/dynamic"; */
@@ -105,9 +107,44 @@ const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
     });
   }
 
-  return (
-    <>
-      <Container>
+
+
+  /* useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://sdk.scdn.co/spotify-player.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    window.onSpotifyWebPlaybackSDKReady = () => {
+      const player = new window.Spotify.Player({
+        name: "Web Playback SDK",
+       
+        volume: 0.5,
+      });
+
+      player.addListener("ready", ({ device_id }) => {
+        console.log("Ready with Device ID", device_id);
+      });
+
+      player.addListener("not_ready", ({ device_id }) => {
+        console.log("Device ID has gone offline", device_id);
+      });
+      player.addListener("player_state_changed", (state) => {
+        if (!state) {
+          return;
+        }
+        console.log("state changed", state);
+      });
+
+      player.connect();
+    };
+  }, [accessToken]);//음악플레이어 */
+
+  function showSearch(){
+    console.log('ccccccccc')
+    return(
+        <Container>
         <InputGroup className="mb-3" size="lg">
           <FormControl
             placeholder="검색"
@@ -122,10 +159,40 @@ const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
           <Button onClick={search}>검색</Button>
         </InputGroup>
       </Container>
-      <Container>
-        <h2></h2>
+    )
+
+  }
+
+  return (
+    <>
+    <header className={main.head}>
+        <Image src="/search.svg"
+        width={48}
+        height={48}
+        onClick={()=>showSearch()}></Image>
+        <Image src="/menu.svg"
+        width={48}
+        height={48}
+        className={''}></Image>
+    </header>
+    
+    <Container>
+        <InputGroup className="mb-3" size="lg">
+          <FormControl
+            placeholder="검색"
+            type="input"
+            onKeyPress={(e) => {
+              if (e.key == "Enter") {
+                search();
+              }
+            }}
+            onChange={(e) => setSearchInput(e.target.value)}
+          ></FormControl>
+          <Button onClick={search}>검색</Button>
+        </InputGroup>
       </Container>
-      <Container>
+
+      <Container /* className={main.album} */>
         <h2>앨범</h2>
         <Row className="mx-2 row row-cols-4">
           {albums &&
@@ -142,7 +209,7 @@ const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
         </Row>
       </Container>
 
-      <Container>
+      <Container /* className={main.artist} */>
         <h2>아티스트</h2>
         <Row className="mx-2 row row-cols-4">
           <Card>

@@ -11,6 +11,7 @@ export default function App({
   return (
     <>
     <SessionProvider session={session}>
+    <Script src="https://sdk.scdn.co/spotify-player.js" />
       <Headmeta/>
       <Component {...pageProps} />
       </SessionProvider>

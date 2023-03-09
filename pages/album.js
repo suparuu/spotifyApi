@@ -6,6 +6,7 @@ const Album = () => {
   const token = window.localStorage.token;
   const [tracks, setTracks] = useState();
   const [albumImg, setAlbumImg] = useState();
+  const [clickTrack, setClickTrack] = useState();
   
   /* useEffect(() => {
     let albumTarget = fetch(`${router.query.href}`, {
@@ -38,21 +39,28 @@ const Album = () => {
       });
       setAlbumImg(router.query.albumImg)
   }, []);
+
+
+function tracksClick(track){
+setClickTrack(track.preview_url)
+
+}
   return (
     <>
       {tracks &&
         tracks.map((track, i) => {
-          console.log(track);
           return (
             <div>
                 <img src={albumImg}></img>
               <span>
                 {track.name}
-                <audio src={track.preview_url} controls></audio>
+                {/* <audio src={track.preview_url} controls></audio> */}
+                <button onClick={()=>tracksClick(track)}>미리듣기</button>
               </span>
             </div>
           );
         })}
+        <audio src={clickTrack} controls></audio>
     </>
   );
 };
