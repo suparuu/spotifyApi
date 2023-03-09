@@ -24,8 +24,8 @@ export default function Home() {
   const [albums, setAlbums] = useState(""); //앨범 api
   const [artist, setArtist] = useState(""); //아티스트 api
   const [artistHref, setArtistHref] = useState("");
-  const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
-  const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
+const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
+  const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호  
   const mytoken =
     "BQCLTrJ27z8pZQ32VjQaMD7_nyFo6wGLCu3i8VWqukjM2T56Tc7NFYf25BE8V"; //내 토큰
   const router = useRouter();

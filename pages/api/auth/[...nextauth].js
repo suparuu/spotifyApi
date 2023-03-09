@@ -1,13 +1,11 @@
-import NextAuth from "next-auth";
-import Providers from "next-auth/providers";
+import NextAuth from 'next-auth'
+import KakaoProvider from 'next-auth/providers/kakao'
 
-const options = {
+export default NextAuth({
   providers: [
-    Providers.Spotify({
-      clientId: process.env.SPOTIFY_CLIENT_ID,
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    KakaoProvider({
+      clientId: process.env.KAKAO_CLIENT_ID,
+      clientSecret: process.env.KAKAO_CLIENT_SECRET,
     }),
   ],
-};
-
-export default NextAuth(options);
+})
