@@ -86,6 +86,18 @@ useEffect(() => {
         console.log(data, "artist");
         setArtist(data);
       });
+
+
+      let artist2 = await fetch(
+        "https://api.spotify.com/v1/artists/" + artistID + "/top-tracks/?market=KR",
+        searchParameters
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data, "qweqweqweqwqweqwew");
+        });
+
+
   } //검색 함수
 
   function routeAlbum(album) {
@@ -96,6 +108,8 @@ useEffect(() => {
     albumImg : album.images[2].url},
     });
   }//rotuer 쿼리 앨범 api 보내기
+
+
 
     return(
 

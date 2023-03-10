@@ -31,5 +31,26 @@
 
 .artist{
     display: none;
+}
+.flexbox01{
+    display: flex;
+    place-items: center;
+}
+
+.signup{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    place-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.signupbox{
+    width: 100px;
+    height: 100px;
+}
+.ttt{
+    background-color: aqua;
 
 }

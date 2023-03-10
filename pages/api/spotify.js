@@ -1,9 +1,7 @@
-
-let db = require("data/db.json");
-let fs = require("fs");
+import { executeQuery } from "../../data/db.js";
 
 export default function handler(req, res) {
-  const { method, body } = req;
+  const { method, body, query } = req;
 
   switch (method) {
     case "GET":
@@ -20,25 +18,22 @@ export default function handler(req, res) {
       break;
   }
   console.log(method);
-  function dataGet() {
-    res.status(200).json(db);
-  }
-  function dataCreate() {
-    db.push(body);
-    saveData();
-  }
-  function dataUpdate() {
-    let user = db.find((obj) => obj.id == body.id);
-    Object.assign(user, body);
-    saveData();
-  }
-  function dataDelete() {
-    db = db.filter((obj) => obj.id !== body);
-    saveData();
+  async function dataGet() {
+    console.log(query);
+    let data = await executeQuery("select * from member where id = ?", [
+      query.id,
+    ]);
+    res.status(200).json(data);
   }
 
-  function saveData() {
-    fs.writeFileSync("data/db.json", JSON.stringify(db));
-    res.status(200).json(db);
+  async function dataCreate() {
+    let { name, id, pw, tel } = body;
+
+    let data = await executeQuery(
+      "insert into member (name,id,pw,tel) value (?,?,?,?)",
+      [name, id, pw, tel]
+    );
+
+    res.status(200).send("가입완료!!!");
   }
 }

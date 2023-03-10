@@ -14,10 +14,9 @@ import { resolve } from "styled-jsx/css";
 import Script from "next/script";
 import album from "./album";
 import { useRouter } from "next/router";
-import Image from "next/image"
-import main from "@/styles/main.module.css"
+import Image from "next/image";
+import main from "@/styles/main.module.css";
 import search from "./search";
-
 
 /* import SpotifyPlayer from 'react-spotify-web-playback';
 import dynamic from "next/dynamic"; */
@@ -28,8 +27,8 @@ export default function Home() {
   const [albums, setAlbums] = useState(""); //앨범 api
   const [artist, setArtist] = useState(""); //아티스트 api
   const [artistHref, setArtistHref] = useState("");
-const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
-const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호  
+  const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
+  const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
   const mytoken =
     "BQCLTrJ27z8pZQ32VjQaMD7_nyFo6wGLCu3i8VWqukjM2T56Tc7NFYf25BE8V"; //내 토큰
   const router = useRouter();
@@ -55,7 +54,6 @@ const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
   }, []); //api토큰값
 
   async function searchWhat() {
-
     // 아티스트 ID
     let searchParameters = {
       method: "GET",
@@ -73,7 +71,6 @@ const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
         return data.artists.items[0].id;
       });
 
-
     let albums = await fetch(
       "https://api.spotify.com/v1/artists/" +
         artistID +
@@ -85,8 +82,6 @@ const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
       .then((data) => {
         setAlbums(data.items);
       }); //해당 아티스트의 모든 앨범 가져오기
-
-   
 
     let artist = await fetch(
       "https://api.spotify.com/v1/artists/" + artistID,
@@ -101,15 +96,12 @@ const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
   } //검색 함수
 
   function routeAlbum(album) {
-    console.log(album)
+    console.log(album);
     router.push({
       pathname: "./album",
-      query: {albumHref : album.href,
-    albumImg : album.images[2].url},
+      query: { albumHref: album.href, albumImg: album.images[2].url },
     });
   }
-
-
 
   /* useEffect(() => {
     const script = document.createElement("script");
@@ -143,10 +135,11 @@ const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
     };
   }, [accessToken]);//음악플레이어 */
 
-  function showSearch(){
-    console.log('ccccccccc')
-    return(
-        <Container>
+  const [search, setSearch] = useState(false);
+  function showSearch() {
+    console.log("ccccccccc");
+    return (
+      <Container>
         <InputGroup className="mb-3" size="lg">
           <FormControl
             placeholder="검색"
@@ -161,24 +154,22 @@ const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
           <Button onClick={searchWhat}>검색</Button>
         </InputGroup>
       </Container>
-    )
-
+    );
   }
 
   return (
     <>
-    <header className={main.head}>
-        <Image src="/search.svg"
-        width={48}
-        height={48}
-        onClick={()=>showSearch()}></Image>
-        <Image src="/menu.svg"
-        width={48}
-        height={48}
-        className={''}></Image>
-    </header>
-    <search></search>
-    <Container className={main.mid}>
+      <header className={main.head}>
+        <Image
+          src="/search.svg"
+          width={48}
+          height={48}
+          onClick={() => setSearch(true)}
+        ></Image>
+        <Image src="/menu.svg" width={48} height={48} className={""}></Image>
+      </header>
+      <search></search>
+      <Container className={main.mid}>
         <h1 className={main.h1name}>SuparuuMusic</h1>
         <InputGroup className="mb-3" size="lg">
           <FormControl
@@ -195,9 +186,9 @@ const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
         </InputGroup>
       </Container>
 
-      
-      <Script src="https://sdk.scdn.co/spotify-player.js" />
+      {search && showSearch()}
 
+      <Script src="https://sdk.scdn.co/spotify-player.js" />
     </>
   );
 }
