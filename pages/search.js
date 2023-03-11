@@ -14,8 +14,8 @@ import Image from "next/image";
 
 
 export default function search(){
-    const router = useRouter();
-    const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
+const router = useRouter();
+const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
 const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호  
 const [accessToken, setAccessToken] = useState(""); // 토큰값 계속 불러오는 state
 const [albums, setAlbums] = useState(false); //앨범 api
@@ -137,7 +137,7 @@ useEffect(() => {
           <Button onClick={searchWhat}>검색</Button>
         </InputGroup>
       </Container> */}
-
+      <section className={main.sectionpadding}>
       <div className={main.inputrapper}>
         <Image
           src="/search.svg"
@@ -155,43 +155,38 @@ useEffect(() => {
           ></input>
           {/* <Button onClick={searchWhat}>검색</Button> */}
         </div>
+        </section>
 
+
+        {artist &&
         <Container /* className={main.artist} */>
             <div className={main.artistbox}>
-            {artist &&<img src={artist.images[0].url}
-            className={main.artistimg}
-            />}
-              <p className={main.artistname}>{artist && artist.name}</p>
+            <img src={artist.images[0].url}
+            className={main.artistimg}/>
+              <p className={main.artistname}>{artist.name}</p>
               </div>
-
       </Container>
+        }
 
-      <section className={`main.sectionAni ${showContent ? 'show' : ''}`}>
-
-      {albums &&<h2>앨범</h2>}
-      </section>
-      <div className={main.albums}>
-        <img src=''></img>
-        <p>연습</p>
+      {/* <section className={`main.sectionAni ${showContent ? 'show' : ''}`}> */}
+      {albums &&<section className={main.sectionAlbum}>
+        <div>
+      <h2>앨범</h2>
       </div>
-
-      <Container /* className={main.album} */>
-        {albums &&<h2>앨범</h2>}
-        <Row className="mx-2 row row-cols-4">
-          {albums &&
-            albums.map((album, i) => {
-              return (
-                 <Card onClick={() => routeAlbum(album)}> 
-                  <Card.Img src={album.images[0].url} />
-                  <Card.Body>
-                    <Card.Title>{album.name}</Card.Title>
-                  </Card.Body>
-                </Card>
-                  );
-            })}
-        </Row>
-      </Container>
-
+      <div className={main.divgap}>
+      {albums.map((album,i)=>{
+        return(
+      <div className={main.albums} onClick={()=> routeAlbum(album)}>
+        <img src={album.images[1].url}
+        className={main.albumImg}></img>
+        <p className={main.albumname}>{album.name}</p>
+      </div>
+        )
+      })
+      }
+      </div>
+        </section>
+        }
       </main>
 
         </>
