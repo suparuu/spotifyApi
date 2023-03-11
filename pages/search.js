@@ -9,7 +9,8 @@ import {
     Row,
   } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import main from "@/styles/main.module.css";
+import Image from "next/image";
 
 
 export default function search(){
@@ -17,9 +18,10 @@ export default function search(){
     const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
 const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호  
 const [accessToken, setAccessToken] = useState(""); // 토큰값 계속 불러오는 state
-const [albums, setAlbums] = useState(""); //앨범 api
-const [artist, setArtist] = useState(""); //아티스트 api
-const [searchInput, setSearchInput] = useState(""); //검색 state
+const [albums, setAlbums] = useState(false); //앨범 api
+const [artist, setArtist] = useState(false); //아티스트 api
+const [searchInput, setSearchInput] = useState(false); //검색 state
+const [showContent, setShowContent] = useState(false);
 
 useEffect(() => {
     let authParameters = {
@@ -109,12 +111,18 @@ useEffect(() => {
     });
   }//rotuer 쿼리 앨범 api 보내기
 
+  function handleClick(){
+    setShowContent(true);
+  }//클릭했을때 컨텐츠 보이는 함수
+
 
 
     return(
 
         <>
-        <Container>
+    <main className={main.searchMain}>
+
+       {/*  <Container>
         <InputGroup className="mb-3" size="lg">
           <FormControl
             placeholder="검색"
@@ -128,10 +136,47 @@ useEffect(() => {
           ></FormControl>
           <Button onClick={searchWhat}>검색</Button>
         </InputGroup>
+      </Container> */}
+
+      <div className={main.inputrapper}>
+        <Image
+          src="/search.svg"
+          width={24}
+          height={24}
+          ></Image>
+          <input placeholder="아티스트 검색" type="input" onKeyPress={(e) => {
+              if (e.key == "Enter") {
+                searchWhat();
+                handleClick();
+              }
+            }}
+            onChange={(e) => setSearchInput(e.target.value)}
+            className={main.inputmain}
+          ></input>
+          {/* <Button onClick={searchWhat}>검색</Button> */}
+        </div>
+
+        <Container /* className={main.artist} */>
+            <div className={main.artistbox}>
+            {artist &&<img src={artist.images[0].url}
+            className={main.artistimg}
+            />}
+              <p className={main.artistname}>{artist && artist.name}</p>
+              </div>
+
       </Container>
 
+      <section className={`main.sectionAni ${showContent ? 'show' : ''}`}>
+
+      {albums &&<h2>앨범</h2>}
+      </section>
+      <div className={main.albums}>
+        <img src=''></img>
+        <p>연습</p>
+      </div>
+
       <Container /* className={main.album} */>
-        <h2>앨범</h2>
+        {albums &&<h2>앨범</h2>}
         <Row className="mx-2 row row-cols-4">
           {albums &&
             albums.map((album, i) => {
@@ -147,17 +192,8 @@ useEffect(() => {
         </Row>
       </Container>
 
-      <Container /* className={main.artist} */>
-        <h2>아티스트</h2>
-        <Row className="mx-2 row row-cols-4">
-          <Card>
-            <Card.Img src={artist && artist.images[0].url} />
-            <Card.Body>
-              <Card.Title>{artist && artist.name}</Card.Title>
-            </Card.Body>
-          </Card>
-        </Row>
-      </Container>
+      </main>
+
         </>
     )
 }

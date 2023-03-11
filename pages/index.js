@@ -103,6 +103,9 @@ export default function Home() {
     });
   }
 
+  function inputtext(e){
+    
+  }
   /* useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://sdk.scdn.co/spotify-player.js";
@@ -147,6 +150,10 @@ export default function Home() {
             onKeyPress={(e) => {
               if (e.key == "Enter") {
                 searchWhat();
+                router.push({
+                    pathname: './search',
+                    
+                })
               }
             }}
             onChange={(e) => setSearchInput(e.target.value)}
@@ -160,35 +167,38 @@ export default function Home() {
   return (
     <>
       <header className={main.head}>
-        <Image
+      {/*   <Image
           src="/search.svg"
           width={48}
           height={48}
           onClick={() => setSearch(true)}
         ></Image>
-        <Image src="/menu.svg" width={48} height={48} className={""}></Image>
+        <Image src="/menu.svg" width={48} height={48} className={""}></Image> */}
       </header>
       <search></search>
       <Container className={main.mid}>
-        <h1 className={main.h1name}>SuparuuMusic</h1>
-        <InputGroup className="mb-3" size="lg">
-          <FormControl
-            placeholder="검색"
-            type="input"
-            onKeyPress={(e) => {
+        <div className={main.inputrapper}>
+        <Image
+          src="/search.svg"
+          width={24}
+          height={24}
+          ></Image>
+          <input placeholder="아티스트 검색" type="input" onKeyPress={(e) => {
+            console.log(e.target.value)
               if (e.key == "Enter") {
                 searchWhat();
               }
             }}
             onChange={(e) => setSearchInput(e.target.value)}
-          ></FormControl>
-          <Button onClick={searchWhat}>검색</Button>
-        </InputGroup>
+            className={main.inputmain}
+          ></input>
+          {/* <Button onClick={searchWhat}>검색</Button> */}
+        </div>
       </Container>
 
       {search && showSearch()}
 
-      <Script src="https://sdk.scdn.co/spotify-player.js" />
+      {/* <Script src="https://sdk.scdn.co/spotify-player.js" /> */}
     </>
   );
 }

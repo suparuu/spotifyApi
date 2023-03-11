@@ -16,8 +16,8 @@
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    background-color: #382CBD;
 }
-
 
 .search{
     margin: 0 auto;
@@ -52,5 +52,65 @@
 }
 .ttt{
     background-color: aqua;
+}
+.inputrapper{
+    border-radius: 30px;
+    background-color: #fff;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+}
+.inputmain{
+    height: 100%;
+    outline:none;
+    border-radius: 30px;
+    border:0 solid;
+    width: 80%;
 
+}
+.buttonmain{
+    background-color: #fff;
+}
+
+.searchMain{
+    background-color: #382CBD;
+    height: 100vh;
+}
+
+.artistimg{
+    width: 180px;
+    height: 180px;
+    border-radius: 90px;
+}
+
+.artistbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artistname{
+    position: absolute;
+    transform: translateY(4.375rem);
+    color: #fff;
+    margin: 0 auto;
+}
+.sectionAni{
+    display: none;
+    background-color: #fff;
+    height: 70vh;
+    border-radius: 30px 30px 0 0;
+    transition: transform 0.5s ease;
+
+}
+.sectionAni.show{
+    display: block;
+    transform: translateY(0);
+}
+.albums{
+    background-color: #fff;
+    
 }
