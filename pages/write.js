@@ -1,6 +1,9 @@
 import main from "@/styles/main.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import sign from "@/styles/sign.module.css";
+import Image from "next/image";
+
 
 export default function Write() {
   useEffect(() => {
@@ -22,26 +25,29 @@ export default function Write() {
 
   return (
     <>
-      <form className={main.signup} onSubmit={signupdata}>
-        <div className={main.ttt}>
-          <h1>회원가입</h1>
-          <div className={main.flexbox01}>
-            <p>이름</p>
-            <input placeholder="이름" name="name"></input>
+      <form className={sign.signup} onSubmit={signupdata}>
+        <div className={sign.signupflexbox01}>
+        <div className={sign.imgbox}>
+            <Image src='./arrowback.svg'
+                width={24}
+                height={24}></Image>
+        </div>
+          <h2 className={sign.textcenter}>회원가입</h2>
+          <div className={sign.inputflexbox}>
+            <input className={sign.inputborder} placeholder="   이름" name="name"></input>
           </div>
-          <div className={main.flexbox01}>
-            <p>아이디</p>
-            <input placeholder="아이디" name="id"></input>
+          <div className={sign.inputflexbox}>
+            <input className={sign.inputborder} placeholder="   아이디" name="id"></input>
           </div>
-          <div className={main.flexbox01}>
-            <p>비밀번호</p>
-            <input placeholder="비밀번호" name="pw"></input>
+          <div className={sign.inputflexbox}>
+            <input className={sign.inputborder} placeholder="   비밀번호" name="pw"></input>
           </div>
-          <div className={main.flexbox01}>
-            <p>전화번호</p>
-            <input placeholder="전화번호" name="tel"></input>
+          <div className={sign.inputflexbox}>
+            <input className={sign.inputborder} placeholder="   전화번호" name="tel"></input>
           </div>
-          <input type="submit" value="회원가입" />
+          <div className={sign.inputflexbox}>
+          <input className={sign.inputbutton} type="submit" value="회원가입" />
+          </div>
         </div>
       </form>
     </>

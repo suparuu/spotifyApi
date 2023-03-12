@@ -107,7 +107,7 @@ useEffect(() => {
     router.push({
       pathname: "./album",
       query: {albumHref : album.href,
-    albumImg : album.images[2].url},
+    albumImg : album.images[1].url},
     });
   }//rotuer 쿼리 앨범 api 보내기
 
@@ -155,6 +155,13 @@ useEffect(() => {
           ></input>
           {/* <Button onClick={searchWhat}>검색</Button> */}
         </div>
+        <div className={main.searchImgbox} onClick={''}>
+        <Image
+          src="/search.svg"
+          width={36}
+          height={36}
+          ></Image>
+        </div>
         </section>
 
 
@@ -171,7 +178,7 @@ useEffect(() => {
       {/* <section className={`main.sectionAni ${showContent ? 'show' : ''}`}> */}
       {albums &&<section className={main.sectionAlbum}>
         <div>
-      <h2>앨범</h2>
+      <h2 className={main.h2margin}>앨범</h2>
       </div>
       <div className={main.divgap}>
       {albums.map((album,i)=>{

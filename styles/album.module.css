@@ -1,0 +1,14 @@
+.albumImgbox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    opacity: 0.75;
+}
+.sectionbox{
+    height: 70vh;
+    background-color: blueviolet;
+    border-radius: 30px;
+    position: fixed;
+    overflow: auto;
+
+}

@@ -106,37 +106,7 @@ export default function Home() {
   function inputtext(e){
     
   }
-  /* useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://sdk.scdn.co/spotify-player.js";
-    script.async = true;
-
-    document.body.appendChild(script);
-
-    window.onSpotifyWebPlaybackSDKReady = () => {
-      const player = new window.Spotify.Player({
-        name: "Web Playback SDK",
-       
-        volume: 0.5,
-      });
-
-      player.addListener("ready", ({ device_id }) => {
-        console.log("Ready with Device ID", device_id);
-      });
-
-      player.addListener("not_ready", ({ device_id }) => {
-        console.log("Device ID has gone offline", device_id);
-      });
-      player.addListener("player_state_changed", (state) => {
-        if (!state) {
-          return;
-        }
-        console.log("state changed", state);
-      });
-
-      player.connect();
-    };
-  }, [accessToken]);//음악플레이어 */
+ 
 
   const [search, setSearch] = useState(false);
   function showSearch() {
@@ -187,6 +157,10 @@ export default function Home() {
             console.log(e.target.value)
               if (e.key == "Enter") {
                 searchWhat();
+                router.push({
+                    pathname: './signup',
+                    
+                })
               }
             }}
             onChange={(e) => setSearchInput(e.target.value)}

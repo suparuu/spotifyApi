@@ -60,7 +60,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 70%;
+    margin: 0 auto;
     
 }
 .inputmain{
@@ -151,4 +152,15 @@
 }
 .sectionpadding{
     padding-top: 1.875rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.h2margin{
+    margin-top: 30%;
+    margin-bottom: 10%;
+}
+.searchImgbox{
+    width: 15%;
+    height: 10%;
 }
