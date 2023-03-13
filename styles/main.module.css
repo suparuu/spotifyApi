@@ -1,166 +1,170 @@
-.head{
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
+.head {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.h1name{
-    text-align: center;
-}
-
-.mid{
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    background-color: #382CBD;
+.h1name {
+  text-align: center;
 }
 
-.search{
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.album{
-    display: none;
-}
-
-.artist{
-    display: none;
-}
-.flexbox01{
-    display: flex;
-    place-items: center;
+.mid {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #382cbd;
 }
 
-.signup{
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    place-items: center;
-    flex-direction: column;
-    height: 100vh;
+.search {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.album {
+  display: none;
 }
 
-.signupbox{
-    width: 100px;
-    height: 100px;
+.artist {
+  display: none;
 }
-.ttt{
-    background-color: aqua;
-}
-.inputrapper{
-    border-radius: 30px;
-    background-color: #fff;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 70%;
-    margin: 0 auto;
-    
-}
-.inputmain{
-    height: 100%;
-    outline:none;
-    border-radius: 30px;
-    border:0 solid;
-    width: 80%;
-
-}
-.buttonmain{
-    background-color: #fff;
+.flexbox01 {
+  display: flex;
+  place-items: center;
 }
 
-.searchMain{
-    background-color: #382CBD;
-    height: 100vh;
+.signup {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.artistimg{
-    width: 180px;
-    height: 180px;
-    border-radius: 90px;
-    z-index: 5;
-    left: 50px;
+.signupbox {
+  width: 100px;
+  height: 100px;
+}
+.ttt {
+  background-color: aqua;
+}
+.inputrapper {
+  border-radius: 30px;
+  background-color: #fff;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+}
+.inputmain {
+  height: 100%;
+  outline: none;
+  border-radius: 30px;
+  border: 0 solid;
+  width: 80%;
+}
+.buttonmain {
+  background-color: #fff;
 }
 
-.artistbox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.searchMain {
+  background-color: #382cbd;
+  height: 100vh;
 }
 
-.artistname{
-    position: absolute;
-    transform: translateY(4.375rem);
-    color: #fff;
-    margin: 0 auto;
+.artistimg {
+  width: 100%;
+  height: 100%;
+  border-radius: 90px;
+  z-index: 5;
+  left: 50px;
 }
-.sectionAni{
-    display: none;
-    background-color: #fff;
-    height: 70vh;
-    border-radius: 30px 30px 0 0;
-    transition: transform 0.5s ease;
 
+.artistbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, -50%);
+  padding: 8px;
+  border-radius: 100%;
+  width: 180px;
+  height: 180px;
+  background-color: #fff;
 }
-.sectionAni.show{
-    display: block;
-    transform: translateY(0);
+
+.artistname {
+  position: absolute;
+  bottom: 10%;
+  color: #fff;
+  margin: 0 auto;
+  z-index: 5;
 }
-.albums{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 120px;
-    padding-left: .625rem;
+.sectionAni {
+  display: none;
+  background-color: #fff;
+  height: 70vh;
+  border-radius: 30px 30px 0 0;
+  transition: transform 0.5s ease;
 }
-.divgap{
-    background-color: #fff;
-    border-radius: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: .625rem;
-    margin: 0 auto;
+.sectionAni.show {
+  display: block;
+  transform: translateY(0);
 }
-.albumImg{
-    width: 6.25rem;
-    border-radius: 10px;
+.albums {
+  width: 28%;
 }
-.albumname{
-    text-overflow: ellipsis;
-    height: 3rem;
-    display: flex;
-    justify-content: left;
-    width: 6.25rem;
-    
+.divgap {
+  background-color: #fff;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin: 0 auto;
 }
-.sectionAlbum{
-    background-color: #fff;
-    border-radius: 30px 30px 0 0;
-    height: 80vh;
-    width: 100%;
-    overflow: auto;
-    bottom: 0;
-    position: absolute;
+.albumImg {
+  width: 100%;
+  height: 6.25rem;
+  border-radius: 10px;
 }
-.sectionpadding{
-    padding-top: 1.875rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.albumname {
+  text-overflow: ellipsis;
+  font-size: 0.8rem;
+  padding: 10px 0;
 }
-.h2margin{
-    margin-top: 30%;
-    margin-bottom: 10%;
+.sectionAlbum {
+  background-color: #fff;
+  border-radius: 30px 30px 0 0;
+
+  width: 100%;
+  /* overflow: auto; */
+  bottom: 0;
+  position: relative;
+  margin-top: 30%;
+  padding: 0 24px;
 }
-.searchImgbox{
-    width: 15%;
-    height: 10%;
+.sectionpadding {
+  padding-top: 1.875rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.h2margin {
+  margin-bottom: 10%;
+  padding-top: 18%;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.searchImgbox {
+  width: 15%;
+  height: 10%;
 }
