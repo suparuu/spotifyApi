@@ -55,7 +55,7 @@ setClickTrack(track.preview_url)
       {tracks &&
         tracks.map((track, i) => {
           return (
-            <div>
+            <div className={album.tracks}>
               <span>
                 {track.name}
                 {/* <audio src={track.preview_url} controls></audio> */}
@@ -64,7 +64,7 @@ setClickTrack(track.preview_url)
             </div>
           );
         })}
-        <audio src={clickTrack} controls></audio>
+        <audio className={''} src={clickTrack} controls></audio>
         </section>
     </>
   );

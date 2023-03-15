@@ -109,23 +109,9 @@ export default function search() {
   return (
     <>
       <main className={main.searchMain}>
-        {/*  <Container>
-        <InputGroup className="mb-3" size="lg">
-          <FormControl
-            placeholder="검색"
-            type="input"
-            onKeyPress={(e) => {
-              if (e.key == "Enter") {
-                searchWhat();
-              }
-            }}
-            onChange={(e) => setSearchInput(e.target.value)}
-          ></FormControl>
-          <Button onClick={searchWhat}>검색</Button>
-        </InputGroup>
-      </Container> */}
+        
         <section className={main.sectionpadding}>
-          <div className={main.inputrapper}>
+        { showContent ? ( <div className={main.inputrapper}>
             <Image src="/search.svg" width={24} height={24}></Image>
             <input
               placeholder="아티스트 검색"
@@ -139,15 +125,20 @@ export default function search() {
               onChange={(e) => setSearchInput(e.target.value)}
               className={main.inputmain}
             ></input>
-            {/* <Button onClick={searchWhat}>검색</Button> */}
           </div>
-          <div className={main.searchImgbox} onClick={""}>
+          ) : (
+            <div className={main.searchImgbox} onClick={()=>{handleClick();}}>
             <Image src="/search.svg" width={36} height={36}></Image>
           </div>
+
+          )
+         
+}
+
         </section>
 
         {/* <section className={`main.sectionAni ${showContent ? 'show' : ''}`}> */}
-        {albums && (
+        {albums &&  (
           <section className={main.sectionAlbum}>
             {artist && (
               <Container /* className={main.artist} */>

@@ -17,7 +17,9 @@ const router = useRouter();
             pathname: "./write"
         }
         )
-
+    }
+    function goBack(){
+      router.back();
     }
     return(
       //   <section className={sign.signup}>
@@ -53,7 +55,8 @@ const router = useRouter();
       <div className={sign.imgbox}>
           <Image src='./arrowback.svg'
               width={24}
-              height={24}></Image>
+              height={24}
+              onClick={()=>{goBack()}}></Image>
       </div>
       
       <div className={sign.signupflexbox01}>
@@ -68,9 +71,9 @@ const router = useRouter();
         </div>
 
           <div className={sign.loginbutton}>
-          <input className={sign.signupbutton} style={{background : "#D9D9D9" , color : "#fff" }} type="submit" value="로그인" />
+          <input className={sign.signupbutton} style={{background : "#1e1e1e" , color : "#fff" }} type="submit" value="로그인" />
         <input className={sign.signupbutton}
-         style={{background : "#1E1E1E" , color : "#fff" }}
+         style={{background : "#d9d9d9"  }}
          type="submit"
          value="이메일로 회원가입"
          onClick={()=>goToWrite()} />
