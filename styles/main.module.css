@@ -61,6 +61,8 @@
   justify-content: center;
   width: 70%;
   margin: 0 auto;
+  scale: 1;
+  transition: 1s;
 }
 .inputmain {
   height: 100%;

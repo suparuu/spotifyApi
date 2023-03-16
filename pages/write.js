@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function Write() {
   useEffect(() => {
-    axios.get(`/api/spotify?id=12312331`).then((res) => {
+    axios.get(`/api/spotify?id=`).then((res) => {
       console.log(res.data);
     });
   }, []);
@@ -63,7 +63,7 @@ export default function Write() {
       </div>
 
 
-      <section className={sign.signup}>
+      {/* <section className={sign.signup}>
       <div className={sign.imgbox}>
           <Image src='./arrowback.svg'
               width={24}
@@ -94,7 +94,7 @@ export default function Write() {
           </div>
     </form>
       </div>
-      </section>
+      </section> */}
       </>
   );
 }

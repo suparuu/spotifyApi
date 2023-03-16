@@ -104,6 +104,8 @@ export default function search() {
 
   function handleClick() {
     setShowContent(true);
+    
+
   } //클릭했을때 컨텐츠 보이는 함수
 
   return (

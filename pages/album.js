@@ -55,16 +55,15 @@ setClickTrack(track.preview_url)
       {tracks &&
         tracks.map((track, i) => {
           return (
-            <div className={album.tracks}>
+            <div className={album.tracks} onClick={()=>tracksClick(track)}>
               <span>
+                {i+1} 
                 {track.name}
-                {/* <audio src={track.preview_url} controls></audio> */}
-                <button onClick={()=>tracksClick(track)}>미리듣기</button>
               </span>
             </div>
           );
         })}
-        <audio className={''} src={clickTrack} controls></audio>
+        <audio src={clickTrack} className={album.audio} controls autoplay></audio>
         </section>
     </>
   );
