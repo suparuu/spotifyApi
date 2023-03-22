@@ -39,12 +39,12 @@ const Album = () => {
         setTracks(data.tracks.items);
       });
       setAlbumImg(router.query.albumImg)
-  }, []);
+  }, []);//누른 앨범  api
 
 function tracksClick(track){
 setClickTrack(track.preview_url)
-
 }
+console.log(tracks[0].artists[0].name,'????')
   return (
     <>
     <div className={album.albumImgbox}>
@@ -59,6 +59,9 @@ setClickTrack(track.preview_url)
               <span>
                 {i+1} 
                 {track.name}
+              </span>
+              <span>
+            
               </span>
             </div>
           );

@@ -55,14 +55,14 @@
 .inputrapper {
   border-radius: 30px;
   background-color: #fff;
-  height: 50px;
+  height: 3.125rem;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 70%;
   margin: 0 auto;
   scale: 1;
-  transition: 1s;
+  transition: 0.5s;
 }
 .inputmain {
   height: 100%;

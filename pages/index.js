@@ -1,7 +1,5 @@
-import Head from "next/head";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Link from "next/link";
 import {
   Button,
   Card,
@@ -10,16 +8,11 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-import { resolve } from "styled-jsx/css";
-import Script from "next/script";
 import album from "./album";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import main from "@/styles/main.module.css";
-import search from "./search";
 
-/* import SpotifyPlayer from 'react-spotify-web-playback';
-import dynamic from "next/dynamic"; */
 
 export default function Home() {
   const [searchInput, setSearchInput] = useState(""); //검색 state
