@@ -3,8 +3,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import sign from "@/styles/sign.module.css";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Write() {
+  const router = useRouter()
   useEffect(() => {
     axios.get(`/api/spotify?id=`).then((res) => {
       console.log(res.data);
@@ -20,10 +22,14 @@ export default function Write() {
     tel = e.target.tel.value;
 
     axios.post("/api/spotify", { name, id, pw, tel });
+    router.push('/signup')
   }
-  function goBack(){
-    router.back();
-  }
+
+    function goBack(){
+      if(router!= undefined){
+        router.back();
+      }
+    }
 
   return (
     <>
@@ -34,7 +40,7 @@ export default function Write() {
             <Image src='./arrowback.svg'
                 width={24}
                 height={24}
-                onClick={()=>{goBack()}}></Image>
+                onClick={()=>{goBack && goBack()}}></Image>
         </div>
           <h2 className={sign.textcenter}>회원가입</h2>
 

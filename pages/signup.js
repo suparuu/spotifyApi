@@ -26,7 +26,22 @@ const router = useRouter();
       e.preventDefault()
       console.log(e.target.id.value)
       console.log(e.target.pw.value)
-
+      axios.get('./api/spotify')
+      .then(res=>{
+        console.log(res.data)
+        let filterValue = res.data.filter((obj)=> obj.id === e.target.id.value)
+        console.log(filterValue[0],'aaa')
+        if(filterValue[0] === undefined){
+          alert('id를 확인해주세요 ')
+        }
+        else if(filterValue[0].pw != e.target.pw.value){
+          alert('pw를 확인해주세요')
+        }
+        else{
+          router.push(`search/${filterValue[0].userID}`)
+        }
+        
+      })
 
     }
     return(

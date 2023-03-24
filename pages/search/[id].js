@@ -12,7 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import main from "@/styles/main.module.css";
 import Image from "next/image";
 
-export default function search() {
+export default function Searchpage() {
   const router = useRouter();
   const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
   const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
@@ -97,7 +97,7 @@ export default function search() {
   function routeAlbum(album) {
     console.log(album);
     router.push({
-      pathname: "./album",
+      pathname: "/album",
       query: { albumHref: album.href, albumImg: album.images[1].url },
     });
   } //rotuer 쿼리 앨범 api 보내기
@@ -115,7 +115,7 @@ export default function search() {
         <section className={main.sectionpadding}>
         { showContent ? ( <div className={main.inputrapper}>
             <Image src="/search.svg" width={24} height={24}></Image>
-            <input 
+            <input
               placeholder="아티스트 검색"
               type="input"
               onKeyPress={(e) => {
@@ -127,7 +127,7 @@ export default function search() {
               onChange={(e) => setSearchInput(e.target.value)}
               className={main.inputmain}
             ></input>
-            </div>
+          </div>
           ) : (
             <div className={main.searchImgbox} onClick={()=>{handleClick();}}>
             <Image src="/search.svg" width={36} height={36}></Image>

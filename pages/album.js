@@ -44,7 +44,6 @@ const Album = () => {
 function tracksClick(track){
 setClickTrack(track.preview_url)
 }
-console.log(tracks[0].artists[0].name,'????')
   return (
     <>
     <div className={album.albumImgbox}>
@@ -61,11 +60,16 @@ console.log(tracks[0].artists[0].name,'????')
                 {track.name}
               </span>
               <span>
-            
+              {track.artists.map((obj,i)=>{
+                  return obj.name
+                })}
               </span>
             </div>
           );
         })}
+        <div>
+          
+        </div>
         <audio src={clickTrack} className={album.audio} controls autoplay></audio>
         </section>
     </>
