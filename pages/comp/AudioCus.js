@@ -3,7 +3,7 @@ import React from 'react'
 const AudioCus = () => {
   const router = useRouter();
 
-  console.log(router.pathname,' ggggeg')
+  console.log(router.pathname,' 플레이어 만들기 실험')
 
 
   return (

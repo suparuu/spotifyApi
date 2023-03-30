@@ -25,11 +25,11 @@ export default function handler(req, res) {
   //   ]);
   //   res.status(200).json(data);
   // }
-  async function dataGet(){
-    try{
-      let data = await executeQuery("select * from member order by userID DESC" , []);
+  async function dataGet() {
+    try {
+      let data = await executeQuery("select * from member order by userID DESC", []);
       res.json(data)
-    }catch(err){
+    } catch (err) {
       res.send(err);
     }
   }

@@ -1,18 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  Container,
-  FormControl,
-  InputGroup,
-  Row,
-} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import main from "@/styles/main.module.css";
 import Image from "next/image";
 
 export default function search() {
+  //안녕하세요 경우씨~~~~~ ㅎㅎㅎㅎㅎㅎㅎ
   const router = useRouter();
   const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
   const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
@@ -20,7 +14,7 @@ export default function search() {
   const [albums, setAlbums] = useState(false); //앨범 api
   const [artist, setArtist] = useState(false); //아티스트 api
   const [searchInput, setSearchInput] = useState(false); //검색 state
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(false); //검색창 이벤트 state
 
   useEffect(() => {
     let authParameters = {
@@ -62,9 +56,9 @@ export default function search() {
 
     let albums = await fetch(
       "https://api.spotify.com/v1/artists/" +
-        artistID +
-        "/albums" +
-        "?include_groups=album,single&market=KR&limit=50",
+      artistID +
+      "/albums" +
+      "?include_groups=album,single&market=KR&limit=50",
       searchParameters
     )
       .then((response) => response.json())
@@ -84,8 +78,8 @@ export default function search() {
 
     let artist2 = await fetch(
       "https://api.spotify.com/v1/artists/" +
-        artistID +
-        "/top-tracks/?market=KR",
+      artistID +
+      "/top-tracks/?market=KR",
       searchParameters
     )
       .then((response) => response.json())
@@ -104,18 +98,16 @@ export default function search() {
 
   function handleClick() {
     setShowContent(true);
-    
-
   } //클릭했을때 컨텐츠 보이는 함수
 
   return (
     <>
       <main className={main.searchMain}>
-        
+
         <section className={main.sectionpadding}>
-        { showContent ? ( <div className={main.inputrapper}>
+          {showContent ? (<div className={main.inputrapper}>
             <Image src="/search.svg" width={24} height={24}></Image>
-            <input 
+            <input
               placeholder="아티스트 검색"
               type="input"
               onKeyPress={(e) => {
@@ -127,20 +119,20 @@ export default function search() {
               onChange={(e) => setSearchInput(e.target.value)}
               className={main.inputmain}
             ></input>
-            </div>
-          ) : (
-            <div className={main.searchImgbox} onClick={()=>{handleClick();}}>
-            <Image src="/search.svg" width={36} height={36}></Image>
           </div>
+          ) : (
+            <div className={main.searchImgbox} onClick={() => { handleClick(); }}>
+              <Image src="/search.svg" width={36} height={36}></Image>
+            </div>
 
           )
-         
-}
+
+          }
 
         </section>
 
         {/* <section className={`main.sectionAni ${showContent ? 'show' : ''}`}> */}
-        {albums &&  (
+        {albums && (
           <section className={main.sectionAlbum}>
             {artist && (
               <Container /* className={main.artist} */>

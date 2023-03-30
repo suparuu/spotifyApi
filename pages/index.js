@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Button,
-  Card,
-  Container,
-  FormControl,
-  InputGroup,
-  Row,
-} from "react-bootstrap";
+import {  Button, Card, Container, FormControl, InputGroup,Row} from "react-bootstrap";
 import album from "./album";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -22,8 +15,7 @@ export default function Home() {
   const [artistHref, setArtistHref] = useState("");
   const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
   const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
-  const mytoken =
-    "BQCLTrJ27z8pZQ32VjQaMD7_nyFo6wGLCu3i8VWqukjM2T56Tc7NFYf25BE8V"; //내 토큰
+  const mytoken = "BQCLTrJ27z8pZQ32VjQaMD7_nyFo6wGLCu3i8VWqukjM2T56Tc7NFYf25BE8V"; //내 토큰
   const router = useRouter();
 
   useEffect(() => {
@@ -96,9 +88,6 @@ export default function Home() {
     });
   }
 
-  function inputtext(e){
-    
-  }
  
 
   const [search, setSearch] = useState(false);
@@ -121,7 +110,7 @@ export default function Home() {
             }}
             onChange={(e) => setSearchInput(e.target.value)}
           ></FormControl>
-          <Button onClick={searchWhat}>검색</Button>
+          <Button onClick={()=>searchWhat()}>검색</Button>
         </InputGroup>
       </Container>
     );
@@ -159,13 +148,11 @@ export default function Home() {
             onChange={(e) => setSearchInput(e.target.value)}
             className={main.inputmain}
           ></input>
-          {/* <Button onClick={searchWhat}>검색</Button> */}
         </div>
       </Container>
 
       {search && showSearch()}
 
-      {/* <Script src="https://sdk.scdn.co/spotify-player.js" /> */}
     </>
   );
 }
