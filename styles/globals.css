@@ -1,5 +1,12 @@
 
-body{
+body {
+    background-image: url('https://i.pinimg.com/564x/1f/5d/6c/1f5d6c4eb4f817eaaf604289987bbafe.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+#__next{
     margin: 0 auto;
-    max-width: 390px;
+    max-width: 400px;
+    
 }

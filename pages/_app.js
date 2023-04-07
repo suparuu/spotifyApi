@@ -4,7 +4,6 @@ import Headmeta from './Headmeta'
 import { SessionProvider } from "next-auth/react"
 import AudioCus from './comp/AudioCus'
 
-
 export default function App({ 
     Component,
     pageProps: { session, ...pageProps },}) {
@@ -14,7 +13,7 @@ export default function App({
     <SessionProvider session={session}>
       <Headmeta/>
       <Component {...pageProps} />
-      <AudioCus ></AudioCus>
+      {/* <AudioCus ></AudioCus> */}
       </SessionProvider>
     </>
   );
