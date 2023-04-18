@@ -7,7 +7,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function search() {
-  //안녕하세요 경우씨~~~~~ ㅎㅎㅎㅎㅎㅎㅎ
+
   const router = useRouter();
   const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
   const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
@@ -155,6 +155,7 @@ export default function search() {
                   <div
                     className={main.albums}
                     onClick={() => routeAlbum(album)}
+                    key={i}
                   >
                     <img
                       src={album.images[1].url}

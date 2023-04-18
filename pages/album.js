@@ -38,7 +38,7 @@ const Album = () => {
         {tracks &&
           tracks.map((track, i) => {
             return (
-              <div className={album.tracks} onClick={() => tracksClick(track)}>
+              <div className={album.tracks} onClick={() => tracksClick(track)} key={i}>
                 <span>
                   {i + 1}
                   {track.name}

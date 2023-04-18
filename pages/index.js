@@ -119,13 +119,7 @@ export default function Home() {
   return (
     <>
       <header className={main.head}>
-      {/*   <Image
-          src="/search.svg"
-          width={48}
-          height={48}
-          onClick={() => setSearch(true)}
-        ></Image>
-        <Image src="/menu.svg" width={48} height={48} className={""}></Image> */}
+      
       </header>
       <search></search>
       <Container className={main.mid}>

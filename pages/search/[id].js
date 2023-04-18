@@ -104,48 +104,46 @@ export default function Searchpage() {
 
   function handleClick() {
     setShowContent(true);
-    
-
   } //클릭했을때 컨텐츠 보이는 함수
 
   return (
     <>
       <main className={main.searchMain}>
-        
         <section className={main.sectionpadding}>
-        { showContent ? ( <div className={main.inputrapper}>
-            <Image src="/search.svg" width={24} height={24}></Image>
-            <input
-              placeholder="아티스트 검색"
-              type="input"
-              onKeyPress={(e) => {
-                if (e.key == "Enter") {
-                  searchWhat();
-                  handleClick();
-                }
-              }}
-              onChange={(e) => setSearchInput(e.target.value)}
-              className={main.inputmain}
-            ></input>
-          </div>
+          {showContent ? (
+            <div className={main.inputrapper}>
+              <Image src="/search.svg" width={24} height={24}></Image>
+              <input
+                placeholder="아티스트 검색"
+                type="input"
+                onKeyPress={(e) => {
+                  if (e.key == "Enter") {
+                    searchWhat();
+                    handleClick();
+                  }
+                }}
+                onChange={(e) => setSearchInput(e.target.value)}
+                className={main.inputmain}
+              ></input>
+            </div>
           ) : (
-            <div className={main.searchImgbox} onClick={()=>{handleClick();}}>
-            <Image src="/search.svg" width={36} height={36}></Image>
-          </div>
-
-          )
-         
-}
-
+            <div
+              className={main.searchImgbox}
+              onClick={() => {
+                handleClick();
+              }}
+            >
+              <Image src="/search.svg" width={36} height={36}></Image>
+            </div>
+          )}
         </section>
 
-        {/* <section className={`main.sectionAni ${showContent ? 'show' : ''}`}> */}
-        {albums &&  (
+        {albums && (
           <section className={main.sectionAlbum}>
             {artist && (
-              <Container /* className={main.artist} */>
+              <Container>
                 <div className={main.artistbox}>
-                  <img src={artist.images[0].url} className={main.artistimg} />
+                  <img src={artist.images[0].url} alt='' className={main.artistimg} />
                   <p className={main.artistname}>{artist.name}</p>
                 </div>
               </Container>
@@ -160,6 +158,7 @@ export default function Searchpage() {
                   <div
                     className={main.albums}
                     onClick={() => routeAlbum(album)}
+                    key={i}
                   >
                     <img
                       src={album.images[1].url}
