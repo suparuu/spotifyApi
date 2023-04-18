@@ -163,6 +163,7 @@ export default function Searchpage() {
                     <img
                       src={album.images[1].url}
                       className={main.albumImg}
+                      alt=''
                     ></img>
                     <p className={main.albumname}>{album.name}</p>
                   </div>

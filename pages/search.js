@@ -107,7 +107,7 @@ export default function search() {
 
         <section className={main.sectionpadding}>
           {showContent ? (<div className={main.inputrapper}>
-            <Image src="/search.svg" width={24} height={24}></Image>
+            <Image src="/search.svg" width={24} height={24} alt=''></Image>
             <input
               placeholder="아티스트 검색"
               type="input"
@@ -123,7 +123,7 @@ export default function search() {
           </div>
           ) : (
             <div className={main.searchImgbox} onClick={() => { handleClick(); }}>
-              <Image src="/search.svg" width={36} height={36}></Image>
+              <Image src="/search.svg" width={36} height={36} alt=''></Image>
             </div>
 
           )
@@ -140,7 +140,7 @@ export default function search() {
             {artist && (
               <Container >
                 <div className={main.artistbox}>
-                  <img src={artist.images[0].url} className={main.artistimg} />
+                  <img src={artist.images[0].url} alt='' className={main.artistimg} />
                   <p className={main.artistname}>{artist.name}</p>
                 </div>
               </Container>
@@ -160,6 +160,7 @@ export default function search() {
                     <img
                       src={album.images[1].url}
                       className={main.albumImg}
+                      alt=''
                     ></img>
                     <p className={main.albumname}>{album.name}</p>
                   </div>
