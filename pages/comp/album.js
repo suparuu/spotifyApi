@@ -4,7 +4,11 @@ import album from "@/styles/album.module.css";
 
 const Album = () => {
   const router = useRouter();
+useEffect(()=>{
+
   const token = window.localStorage.token;
+},[])
+
   const [tracks, setTracks] = useState();
   const [albumImg, setAlbumImg] = useState();
   const [clickTrack, setClickTrack] = useState(); //track api 담는 state

@@ -6,9 +6,9 @@ import main from "@/styles/main.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-export default function search() {
+export default function Search() {
 
-  const router2 = useRouter();
+  const router = useRouter();
   const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
   const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
   const [accessToken, setAccessToken] = useState(""); // 토큰값 계속 불러오는 state
@@ -91,7 +91,7 @@ export default function search() {
 
   function routeAlbum(album) {
     console.log(album);
-    router2.push({
+    router.push({
       pathname: "./album",
       query: { albumHref: album.href, albumImg: album.images[1].url },
     });

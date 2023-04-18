@@ -22,7 +22,7 @@ export default function Write() {
     tel = e.target.tel.value;
 
     axios.post("/api/spotify", { name, id, pw, tel });
-    router.push('/signup')
+    router.push('./signup')
   }
 
   function goBack() {
@@ -36,7 +36,7 @@ export default function Write() {
       <div className={sign.signup}>
         <div className={sign.signupflexbox01}>
           <div className={sign.imgbox}>
-            <Image src='./arrowback.svg'
+            <Image src='../arrowback.svg'
               width={24}
               height={24}
               onClick={() => { goBack && goBack() }}

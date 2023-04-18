@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {  Button, Card, Container, FormControl, InputGroup,Row} from "react-bootstrap";
-import album from "./album";
+import Album from "./comp/album";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import main from "@/styles/main.module.css";
 
 
 export default function Home() {
+
   const [searchInput, setSearchInput] = useState(""); //검색 state
   const [accessToken, setAccessToken] = useState(""); // 토큰값 계속 불러오는 state
   const [albums, setAlbums] = useState(""); //앨범 api
@@ -83,7 +84,7 @@ export default function Home() {
   function routeAlbum(album) {
     console.log(album);
     router.push({
-      pathname: "./album",
+      pathname: "./comp/album",
       query: { albumHref: album.href, albumImg: album.images[2].url },
     });
   }
@@ -103,7 +104,7 @@ export default function Home() {
               if (e.key == "Enter") {
                 searchWhat();
                 router.push({
-                    pathname: './search',
+                    pathname: './comp/search',
                     
                 })
               }
@@ -134,7 +135,7 @@ export default function Home() {
               if (e.key == "Enter") {
                 searchWhat();
                 router.push({
-                    pathname: './signup',
+                    pathname: './comp/signup',
                     
                 })
               }
