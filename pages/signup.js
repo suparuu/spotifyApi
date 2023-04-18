@@ -48,7 +48,8 @@ export default function Signup() {
         <Image src='./arrowback.svg'
           width={24}
           height={24}
-          onClick={() => { goBack() }}></Image>
+          onClick={() => { goBack() }}
+          alt=''></Image>
       </div>
 
       <div className={sign.signupflexbox01}>

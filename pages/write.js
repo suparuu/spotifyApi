@@ -39,7 +39,8 @@ export default function Write() {
             <Image src='./arrowback.svg'
               width={24}
               height={24}
-              onClick={() => { goBack && goBack() }}></Image>
+              onClick={() => { goBack && goBack() }}
+              alt=''></Image>
           </div>
           <h2 className={sign.textcenter}>회원가입</h2>
           <form onSubmit={signupdata}>
