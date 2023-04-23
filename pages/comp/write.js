@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function Write() {
   const router = useRouter()
   useEffect(() => {
-    axios.get(`/api/spotify?id=`).then((res) => {
+    axios.get(`/api/spotify`).then((res) => {
       console.log(res.data);
     });
   }, []);//db 연결

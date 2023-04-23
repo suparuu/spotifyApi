@@ -1,18 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  Container,
-  FormControl,
-  InputGroup,
-  Row,
-} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import main from "@/styles/main.module.css";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
-export default function Searchpage() {
+export default function Search() {
+
   const router = useRouter();
   const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
   const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
@@ -20,7 +15,7 @@ export default function Searchpage() {
   const [albums, setAlbums] = useState(false); //앨범 api
   const [artist, setArtist] = useState(false); //아티스트 api
   const [searchInput, setSearchInput] = useState(false); //검색 state
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(false); //검색창 이벤트 state
 
   useEffect(() => {
     let authParameters = {
@@ -62,9 +57,9 @@ export default function Searchpage() {
 
     let albums = await fetch(
       "https://api.spotify.com/v1/artists/" +
-        artistID +
-        "/albums" +
-        "?include_groups=album,single&market=KR&limit=50",
+      artistID +
+      "/albums" +
+      "?include_groups=album,single&market=KR&limit=50",
       searchParameters
     )
       .then((response) => response.json())
@@ -84,8 +79,8 @@ export default function Searchpage() {
 
     let artist2 = await fetch(
       "https://api.spotify.com/v1/artists/" +
-        artistID +
-        "/top-tracks/?market=KR",
+      artistID +
+      "/top-tracks/?market=KR",
       searchParameters
     )
       .then((response) => response.json())
@@ -97,7 +92,7 @@ export default function Searchpage() {
   function routeAlbum(album) {
     console.log(album);
     router.push({
-      pathname: "/album",
+      pathname: "../album",
       query: { albumHref: album.href, albumImg: album.images[1].url },
     });
   } //rotuer 쿼리 앨범 api 보내기
@@ -109,39 +104,41 @@ export default function Searchpage() {
   return (
     <>
       <main className={main.searchMain}>
+
         <section className={main.sectionpadding}>
-          {showContent ? (
-            <div className={main.inputrapper}>
-              <Image src="/search.svg" width={24} height={24}></Image>
-              <input
-                placeholder="아티스트 검색"
-                type="input"
-                onKeyPress={(e) => {
-                  if (e.key == "Enter") {
-                    searchWhat();
-                    handleClick();
-                  }
-                }}
-                onChange={(e) => setSearchInput(e.target.value)}
-                className={main.inputmain}
-              ></input>
-            </div>
-          ) : (
-            <div
-              className={main.searchImgbox}
-              onClick={() => {
-                handleClick();
+          {showContent ? (<div className={main.inputrapper}>
+            <Image src="/search.svg" width={24} height={24} alt=''></Image>
+            <input
+              placeholder="아티스트 검색"
+              type="input"
+              onKeyPress={(e) => {
+                if (e.key == "Enter") {
+                  searchWhat();
+                  handleClick();
+                }
               }}
-            >
-              <Image src="/search.svg" width={36} height={36}></Image>
+              onChange={(e) => setSearchInput(e.target.value)}
+              className={main.inputmain}
+            ></input>
+          </div>
+          ) : (
+            <div className={main.searchImgbox} onClick={() => { handleClick(); }}>
+              <Image src="/search.svg" width={36} height={36} alt=''></Image>
             </div>
-          )}
+
+          )
+
+          }
+
         </section>
 
         {albums && (
-          <section className={main.sectionAlbum}>
+          <motion.section className={main.sectionAlbum}
+          initial={{ y: 500 }}
+          animate={{ y :0 }}
+          transition={{ duration: 0.5}}>
             {artist && (
-              <Container>
+              <Container >
                 <div className={main.artistbox}>
                   <img src={artist.images[0].url} alt='' className={main.artistimg} />
                   <p className={main.artistname}>{artist.name}</p>
@@ -152,6 +149,8 @@ export default function Searchpage() {
             <div>
               <h2 className={main.h2margin}>Album</h2>
             </div>
+            <div className={main.overflowY}>
+
             <div className={main.divgap}>
               {albums.map((album, i) => {
                 return (
@@ -170,7 +169,9 @@ export default function Searchpage() {
                 );
               })}
             </div>
-          </section>
+            </div>
+
+          </motion.section>
         )}
       </main>
     </>

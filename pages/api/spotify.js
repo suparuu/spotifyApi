@@ -29,6 +29,7 @@ export default function handler(req, res) {
     try {
       let data = await executeQuery("select * from member order by userID DESC", []);
       res.json(data)
+      console.log(data, 'aa?')
     } catch (err) {
       res.send(err);
     }

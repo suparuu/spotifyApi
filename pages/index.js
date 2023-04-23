@@ -19,6 +19,9 @@ export default function Home() {
   const mytoken = "BQCLTrJ27z8pZQ32VjQaMD7_nyFo6wGLCu3i8VWqukjM2T56Tc7NFYf25BE8V"; //내 토큰
   const router = useRouter();
 
+
+  // console.log(window.localStorage, '토큰')
+
   useEffect(() => {
     let authParameters = {
       method: "POST",

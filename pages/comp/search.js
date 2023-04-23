@@ -6,6 +6,9 @@ import main from "@/styles/main.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+
+//없어도 됨 search/[id].js 와 내용이 같음
+
 export default function Search() {
 
   const router = useRouter();
@@ -16,6 +19,9 @@ export default function Search() {
   const [artist, setArtist] = useState(false); //아티스트 api
   const [searchInput, setSearchInput] = useState(false); //검색 state
   const [showContent, setShowContent] = useState(false); //검색창 이벤트 state
+
+
+
 
   useEffect(() => {
     let authParameters = {
@@ -149,6 +155,8 @@ export default function Search() {
             <div>
               <h2 className={main.h2margin}>Album</h2>
             </div>
+            <div className={main.overflowY}>
+
             <div className={main.divgap}>
               {albums.map((album, i) => {
                 return (
@@ -167,6 +175,8 @@ export default function Search() {
                 );
               })}
             </div>
+            </div>
+
           </motion.section>
         )}
       </main>

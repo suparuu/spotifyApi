@@ -24,7 +24,7 @@ export default function Signup() {
     e.preventDefault()
     console.log(e.target.id.value)
     console.log(e.target.pw.value)
-    axios.get('./api/spotify')
+    axios.get('/api/spotify')
       .then(res => {
         console.log(res.data)
         let filterValue = res.data.filter((obj) => obj.id === e.target.id.value)
@@ -45,11 +45,11 @@ export default function Signup() {
 
     <section className={sign.signup}>
       <div className={sign.imgbox}>
-        <Image src='./arrowback.svg'
+        <Image src='../arrowback.svg'
           width={24}
           height={24}
           onClick={() => { goBack() }}
-          alt=''></Image>
+          alt='arrowback'></Image>
       </div>
 
       <div className={sign.signupflexbox01}>

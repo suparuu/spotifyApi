@@ -4,16 +4,13 @@ import album from "@/styles/album.module.css";
 
 const Album = () => {
   const router = useRouter();
-useEffect(()=>{
-
-  const token = window.localStorage.token;
-},[])
-
+  
   const [tracks, setTracks] = useState();
   const [albumImg, setAlbumImg] = useState();
   const [clickTrack, setClickTrack] = useState(); //track api 담는 state
-
+  
   useEffect(() => {
+    const token = window.localStorage.token;
     let albumTarget = fetch(`${router.query.albumHref}`, {
       headers: {
         "Content-Type": "application/json",
