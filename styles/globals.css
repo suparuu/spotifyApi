@@ -1,12 +1,25 @@
+@font-face {
+    font-family: 'Pretendard-Regular' !important;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 
 body {
-    background-image: url('https://i.pinimg.com/564x/1f/5d/6c/1f5d6c4eb4f817eaaf604289987bbafe.jpg');
+    /* background-image: url('https://t1.daumcdn.net/cfile/tistory/1159C8524D6C365821'); */
+    background-image: url('../public/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
 
 }
 #__next{
-    margin: 0 auto;
     max-width: 410px;
-    
+    max-height: 900px;
+    width: 100%;
 }

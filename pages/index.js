@@ -5,6 +5,7 @@ import Album from "./comp/album";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import main from "@/styles/main.module.css";
+import Signup from "./comp/signup";
 
 
 export default function Home() {
@@ -91,12 +92,10 @@ export default function Home() {
       query: { albumHref: album.href, albumImg: album.images[2].url },
     });
   }
-
- 
-
   const [search, setSearch] = useState(false);
+
+  
   function showSearch() {
-    console.log("ccccccccc");
     return (
       <Container>
         <InputGroup className="mb-3" size="lg">
@@ -122,35 +121,7 @@ export default function Home() {
 
   return (
     <>
-      <header className={main.head}>
-      
-      </header>
-      <search></search>
-      <Container className={main.mid}>
-        <div className={main.inputrapper}>
-        <Image
-          src="/search.svg"
-          width={24}
-          height={24}
-          ></Image>
-          <input placeholder="아티스트 검색" type="input" onKeyPress={(e) => {
-            console.log(e.target.value)
-              if (e.key == "Enter") {
-                searchWhat();
-                router.push({
-                    pathname: './comp/signup',
-                    
-                })
-              }
-            }}
-            onChange={(e) => setSearchInput(e.target.value)}
-            className={main.inputmain}
-          ></input>
-        </div>
-      </Container>
-
-      {search && showSearch()}
-
+      <Signup></Signup>
     </>
   );
 }

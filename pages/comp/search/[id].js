@@ -52,7 +52,11 @@ export default function Search() {
     )
       .then((response) => response.json())
       .then((data) => {
-        return data.artists.items[0].id;
+        if(data.artists === undefined){
+          alert('검색 결과가 없습니다.')
+        } else{
+          return data.artists.items[0].id;
+        }
       });
 
     let albums = await fetch(
@@ -131,26 +135,21 @@ export default function Search() {
           }
 
         </section>
-
         {albums && (
           <motion.section className={main.sectionAlbum}
           initial={{ y: 500 }}
           animate={{ y :0 }}
           transition={{ duration: 0.5}}>
             {artist && (
-              <Container >
                 <div className={main.artistbox}>
                   <img src={artist.images[0].url} alt='' className={main.artistimg} />
                   <p className={main.artistname}>{artist.name}</p>
                 </div>
-              </Container>
             )}
 
-            <div>
               <h2 className={main.h2margin}>Album</h2>
-            </div>
-            <div className={main.overflowY}>
 
+            <div className={main.testeeeee}>
             <div className={main.divgap}>
               {albums.map((album, i) => {
                 return (
@@ -170,6 +169,8 @@ export default function Search() {
               })}
             </div>
             </div>
+
+
 
           </motion.section>
         )}

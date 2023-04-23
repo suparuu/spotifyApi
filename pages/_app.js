@@ -13,7 +13,7 @@ export default function App({
     <SessionProvider session={session}>
       <Headmeta/>
       <Component {...pageProps} />
-      <AudioCus ></AudioCus>
+      {/* <AudioCus ></AudioCus> */}
       </SessionProvider>
     </>
   );

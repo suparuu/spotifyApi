@@ -12,7 +12,7 @@ export default function Signup() {
   function goToWrite(e) {
     console.log('asd')
     router.push({
-      pathname: "./write"
+      pathname: "comp/write"
     }
     )
   }//write 페이지로 보내는 함수
@@ -36,7 +36,7 @@ export default function Signup() {
           alert('pw를 확인해주세요')
         }//pw 를 잘못쳤을시
         else {
-          router.push(`search/${filterValue[0].userID}`)
+          router.push(`/comp/search/${filterValue[0].userID}`)
         }//search로 넘어가면서 id값도 같이 보내주기
       })
 
@@ -44,6 +44,9 @@ export default function Signup() {
   return (
 
     <section className={sign.signup}>
+      
+
+      <div className={sign.signupflexbox01}>
       <div className={sign.imgbox}>
         <Image src='../arrowback.svg'
           width={24}
@@ -51,8 +54,6 @@ export default function Signup() {
           onClick={() => { goBack() }}
           alt='arrowback'></Image>
       </div>
-
-      <div className={sign.signupflexbox01}>
         <h2 className={sign.textcenter}>로그인</h2>
         <form onSubmit={sendData}>
           <div className={sign.helplz}>

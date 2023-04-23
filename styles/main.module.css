@@ -85,6 +85,9 @@
   background-color: #382cbd;
   height: 100vh;
   border-radius: 50px;
+  position: relative;
+  max-height: 900px;
+  width: 100%;
 }
 
 .artistimg {
@@ -136,13 +139,12 @@
 }
 
 .divgap {
-  background-color: #fff;
-  border-radius: 30px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.625rem;
   margin: 0 auto;
+  overflow-y: hidden;
 }
 
 .albumImg {
@@ -159,12 +161,13 @@
 
 .sectionAlbum {
   background-color: #fff;
-  border-radius: 30px 30px 0 0;
+  border-radius: 30px;
   width: 100%;
   bottom: 0;
-  position: relative;
+  position: absolute;
   margin-top: 30%;
   padding: 0 24px;
+  height: 70%;
  }
 
 .sectionpadding {
@@ -185,10 +188,7 @@
   width: 15%;
   height: 3.125rem;
 }
-.overflowY{
-  overflow: scroll;
-    height: 64vh;
-}
+
 
 @keyframes ani {
   0%{
@@ -197,4 +197,20 @@
   }
   100%{
   }
+}
+
+.testeeeee{
+  overflow-y: scroll;
+  width: 100%;
+  height: 80%;
+  
+}
+
+.testeeeee::-webkit-scrollbar{
+  width: 5px;
+}
+.testeeeee::-webkit-scrollbar-thumb{
+  background-color: #333;
+  border-radius:  15px;
+  height: 10px;
 }
