@@ -2,17 +2,19 @@
     margin: 0 auto;
     height: 100vh;
     width: 100%;
+    max-height: 900px;
 }
 
 .signupflexbox01 {
     background-color: #fff;
     border-radius: 30px;
     width: 100%;
-    height: 70%;
+    height: 100%;
 }
 
 .textcenter {
     text-align: center;
+    padding: 20px 0;
 }
 
 .inputflexbox {
@@ -29,7 +31,7 @@
     border-width: 0 0 2px 0;
     border-color: #382CBD;
     width: 80%;
-    height: 50%;
+    height: 60px;
 }
 
 .inputbutton {
@@ -83,6 +85,18 @@
 }
 
 .helplz {
-    height: 90vh;
+    height: 30vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
 }
 
+.writeInput{
+    height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
+}

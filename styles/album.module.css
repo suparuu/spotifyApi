@@ -92,6 +92,12 @@ align-items: center;
   margin: 0 auto;
 
 }
+.h2Style{
+  margin-bottom: 10%;
+  padding-top: 18%;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
 
 
@@ -112,6 +118,8 @@ align-items: center;
   border-radius: 5px;
   z-index: -1;
   margin: 0 auto;
+  margin-top: 10px;
+
 }
 
 .audio::-webkit-media-controls-panel {
@@ -128,10 +136,7 @@ align-items: center;
 }
 /* 버튼 */
 
-.audio::-webkit-media-controls-timeline {
 
-}
-/* 타임라인 */
 
 
 .audio::-webkit-media-controls-current-time-display,

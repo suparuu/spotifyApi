@@ -52,17 +52,19 @@ export default function Signup() {
           width={24}
           height={24}
           onClick={() => { goBack() }}
-          alt='arrowback'></Image>
+          alt='arrowback'
+          style={{cursor : 'pointer'}}></Image>
       </div>
         <h2 className={sign.textcenter}>로그인</h2>
         <form onSubmit={sendData}>
           <div className={sign.helplz}>
             <div className={sign.inputflexbox}>
-              <input className={sign.inputborder} placeholder="   아이디" name="id"></input>
+              <input className={sign.inputborder} placeholder="   아이디" type={"id"} name="id"></input>
             </div>
             <div className={sign.inputflexbox}>
-              <input className={sign.inputborder} placeholder="   비밀번호" name="pw"></input>
+              <input className={sign.inputborder} placeholder="   비밀번호" type={"password"} name="pw"></input>
             </div>
+          </div>
 
             <div className={sign.loginbutton}>
               <input className={sign.signupbutton} style={{ background: "#1e1e1e", color: "#fff" }} type="submit" value="로그인" />
@@ -71,9 +73,8 @@ export default function Signup() {
                 type="button"
                 value="이메일로 회원가입"
                 onClick={() => goToWrite()} />
-              <input className={sign.signupbutton} type="button" value="카카오로 시작하기" />
+              {/* <input className={sign.signupbutton} type="button" value="카카오로 시작하기" /> */}
             </div>
-          </div>
         </form>
       </div>
     </section>

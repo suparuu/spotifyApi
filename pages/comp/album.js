@@ -72,7 +72,8 @@ const Album = () => {
               width={24}
               height={24}
               onClick={() => { goBack && goBack() }}
-              alt=''></Image>
+              alt=''
+              style={{cursor : 'pointer'}}></Image>
       </div>
       </div>
       <div className={album.albumImgbox}>
@@ -80,7 +81,7 @@ const Album = () => {
       </div>
       <section className={album.sectionbox}>
         <div className={album.paddingBox}>
-          <h2>노래</h2>
+          <h2 className={album.h2Style}>Tracks</h2>
           {tracks &&
             tracks.map((track, i) => {
               return (
