@@ -7,14 +7,13 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function Search() {
-
   const router = useRouter();
   const CLIENT_ID = "017de660e7444fa7a690fd422b198f9f"; //내 아이디
   const CLIENT_SECRET = "be4733d60b604cd48b1ae63d424021d4"; //내 비밀번호
   const [accessToken, setAccessToken] = useState(""); // 토큰값 계속 불러오는 state
   const [albums, setAlbums] = useState(false); //앨범 api
   const [artist, setArtist] = useState(false); //아티스트 api
-  const [searchInput, setSearchInput] = useState(false); //검색 state
+  const [searchInput, setSearchInput] = useState("iu"); //검색 state
   const [showContent, setShowContent] = useState(false); //검색창 이벤트 state
 
   useEffect(() => {
@@ -52,18 +51,19 @@ export default function Search() {
     )
       .then((response) => response.json())
       .then((data) => {
-        if(data.artists === undefined){
-          alert('검색 결과가 없습니다.')
-        } else{
+        if (!data.artists.items.length) {
+          alert("검색 결과가 없습니다.");
+          return;
+        } else {
           return data.artists.items[0].id;
         }
-      });
+      }); //해당 아티스트 사진 가져오기
 
     let albums = await fetch(
       "https://api.spotify.com/v1/artists/" +
-      artistID +
-      "/albums" +
-      "?include_groups=album,single&market=KR&limit=50",
+        artistID +
+        "/albums" +
+        "?include_groups=album,single&market=KR&limit=50",
       searchParameters
     )
       .then((response) => response.json())
@@ -71,28 +71,15 @@ export default function Search() {
         setAlbums(data.items);
       }); //해당 아티스트의 모든 앨범 가져오기
 
-    let artist = await fetch(
+    let artistData = await fetch(
       "https://api.spotify.com/v1/artists/" + artistID,
       searchParameters
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, "artist");
         setArtist(data);
       });
-
-    let artist2 = await fetch(
-      "https://api.spotify.com/v1/artists/" +
-      artistID +
-      "/top-tracks/?market=KR",
-      searchParameters
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data, "qweqweqweqwqweqwew");
-      });
-  } //검색 함수
-
+  }
   function routeAlbum(album) {
     console.log(album);
     router.push({
@@ -105,12 +92,17 @@ export default function Search() {
     setShowContent(true);
   } //클릭했을때 컨텐츠 보이는 함수
 
+  useEffect(() => {
+    searchWhat();
+  }, []);
+  console.log(artist, "sdfsdfsf");
+
+
   return (
     <>
       <main className={main.searchMain}>
-
         <section className={main.sectionpadding}>
-          {showContent ? (<div className={main.inputrapper}>
+          {/* {showContent ? (<div className={main.inputrapper}>
             <Image src="/search.svg" width={24} height={24} alt=''></Image>
             <input
               placeholder="아티스트 검색"
@@ -132,47 +124,67 @@ export default function Search() {
 
           )
 
-          }
+          } */}
 
+          <div className={main.inputrapper}>
+            <Image src="/search.svg" width={24} height={24} alt=""></Image>
+            <input
+              placeholder="아티스트 검색"
+              type="input"
+              onKeyPress={(e) => {
+                if (e.key == "Enter") {
+                  searchWhat();
+                  handleClick();
+                }
+              }}
+              onChange={(e) => setSearchInput(e.target.value)}
+              className={main.inputmain}
+            ></input>
+          </div>
         </section>
-        {albums && (
-          <motion.section className={main.sectionAlbum}
-          initial={{ y: 500 }}
-          animate={{ y :0 }}
-          transition={{ duration: 0.5}}>
-            {artist && (
+        { artist.error ? '': (
+          albums && (
+            <motion.section
+              className={main.sectionAlbum}
+              initial={{ y: 500 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {artist && (
                 <div className={main.artistbox}>
-                  <img src={artist.images[0].url} alt='' className={main.artistimg} />
+                  <img
+                    src={artist.images[0].url}
+                    alt=""
+                    className={main.artistimg}
+                  />
                   <p className={main.artistname}>{artist.name}</p>
                 </div>
-            )}
+              )}
 
               <h2 className={main.h2margin}>Album</h2>
 
-            <div className={main.testeeeee}>
-            <div className={main.divgap}>
-              {albums.map((album, i) => {
-                return (
-                  <div
-                    className={main.albums}
-                    onClick={() => routeAlbum(album)}
-                    key={i}
-                  >
-                    <img
-                      src={album.images[1].url}
-                      className={main.albumImg}
-                      alt=''
-                    ></img>
-                    <p className={main.albumname}>{album.name}</p>
-                  </div>
-                );
-              })}
-            </div>
-            </div>
-
-
-
-          </motion.section>
+              <div className={main.testeeeee}>
+                <div className={main.divgap}>
+                  {albums.map((album, i) => {
+                    return (
+                      <div
+                        className={main.albums}
+                        onClick={() => routeAlbum(album)}
+                        key={i}
+                      >
+                        <img
+                          src={album.images[1].url}
+                          className={main.albumImg}
+                          alt=""
+                        ></img>
+                        <p className={main.albumname}>{album.name}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.section>
+          )
         )}
       </main>
     </>

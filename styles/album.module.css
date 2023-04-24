@@ -123,7 +123,7 @@ align-items: center;
 }
 
 .audio::-webkit-media-controls-panel {
-  background-color: #333;
+  background-color: yellow;
   color: #fff;
   border-radius: 10px;
 }
